@@ -1,0 +1,20 @@
+/* .admin-oac-container {
+    display: flex;
+    justify-content: space-around;
+} */
+
+#admin-oacCheckout {
+    color: white;
+    display: initial;
+}
+
+#admin-oacAggregate {
+    color: white;
+    display: none;
+}
+
+.centerfy {
+    display:flex;
+    justify-content:space-around;
+}
+

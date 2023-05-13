@@ -1,0 +1,8 @@
+#admin-setfish-table {
+    color: white;
+}
+
+.admin-setfish-container {
+    display: flex;
+    justify-content: space-around;
+}

@@ -1,0 +1,8 @@
+.checkorder-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+#checkorder-table {
+    color: white;
+}

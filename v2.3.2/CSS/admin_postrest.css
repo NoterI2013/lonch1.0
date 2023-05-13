@@ -1,0 +1,31 @@
+#admin-postrest-table {
+    color: white;
+}
+
+.admin-postrest-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.restlist-val {
+    padding: 3px 8px 3px 8px;
+    background-color: #888888;
+    border-radius: 3px;
+}
+
+.restlist-val:hover {
+    opacity: 0.7;
+}
+
+.restlist-key {
+    display: none;
+}
+
+.restlist-container {
+    display: flex;
+    justify-content: center;
+}
+
+.restlist-tr {
+    font-family: Microsoft JhengHei;
+}

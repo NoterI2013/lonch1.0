@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/socket.io/socket.io.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="og:image" content="../IMG/static/og.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:title" content="Lonch System">
+        <meta property="og:description" content="Lonch 系統可以讓您使用事先儲存好的資料來訂購餐點，並提供金流管理系統。">
+        <title>Lonch-午餐訂購系統</title>
+        <link rel="icon" type="image/x-icon" href="../IMG/static/icon.ico">
+        <link rel="stylesheet" href="../CSS/index.css">
+        <link rel="stylesheet" href="../CSS/display.css">
+        <link rel="stylesheet" href="../CSS/signup.css">
+        <link rel="stylesheet" href="../CSS/order.css">
+        <link rel="stylesheet" href="../CSS/checkorder.css">
+        <link rel="stylesheet" href="../CSS/admin_setfish.css">
+        <link rel="stylesheet" href="../CSS/admin_postrest.css">
+        <link rel="stylesheet" href="../CSS/admin_orderAndCall.css">
+    </head>
+    <body>
+        <header style="position: relative;">
+            <div id="moreoptionarea">
+                <div class="moreoption-options" id="go-to-orderpage">
+                    <img src="../IMG/ordermeal.png"> <span class="ps-0"> 訂購餐點 </span>
+                </div>
+                <div class="moreoption-options" id="go-to-checkorder">
+                    <img src="../IMG/checkAndDelete.png"> <span class="ps-0"> 我的餐點 </span>
+                </div>
+                <div class="moreoption-options" id="go-to-balance">
+                    <img src="../IMG/balance.png"> <span class="ps-0"> 查看餘額 </span>
+                </div>
+                <div class="moreoption-options admin-only" id="admin-setfish-btn">
+                    <img src="../IMG/admin_setfish.png"> <span class="ps-0"> 修改餘額 </span>
+                </div>
+                <div class="moreoption-options admin-only" id="admin-postrest-btn">
+                    <img src="../IMG/admin_postrest.png"> <span class="ps-0"> 選擇餐廳 </span>
+                </div>
+                <div class="moreoption-options admin-only" id="admin-orderAndCall-btn">
+                    <img src="../IMG/admin_orderAndCall.png"> <span class="ps-0"> 彙整訂餐 </span>
+                </div>
+            </div>
+            <div id="loginarea">
+                <div id="__login">
+                    <div class="login-inputs">
+                        <img src="../IMG/account.png"> <span class="ps-0"> <input type="text" placeholder="帳號：" id="login-account" size="8"> </span>
+                    </div>
+                    <div class="login-inputs">
+                        <img src="../IMG/password.png"> <span class="ps-0"> <input type="password" placeholder="密碼：" id="login-password" size="8"> </span>
+                    </div>
+                    <div class="login-inputs" id="login-submit">
+                        <img src="../IMG/submit.png"> <span class="ps-0"> 確認密碼 </span>
+                    </div>
+                    <div class="login-inputs" id="signup">
+                        <img src="../IMG/signup.png"> <span class="ps-0"> 申請帳號 </span>
+                    </div>
+                </div>
+                <div id="__logout">
+                    <div id="logout">
+                        <img src="../IMG/account.png"> <span class="ps-0" id="logout-id">  </span>
+                    </div>
+                </div>
+            </div>
+            <div class="title-div">
+                <span class="title-span">
+                    <img src="../IMG/moreoption.png" id="moreoption" style="height: max-content; "/>
+                </span>
+                <span class="title-span" id="title-LYL"> <img src="../IMG/logo.png" id="back-to-home" style="height: 32px; image-rendering:initial;"> </span>
+                <span class="title-span" style="justify-content: flex-end;">
+                    <img src="../IMG/loginicon.png" id="loginicon" style="height: max-content;"/>
+                </span>
+            </div>
+            <hr style="height:2px; border-width:0; color:gray; background-color:gray;">
+        </header>
+
+        <main id="idlePage">
+            <!-- <div style="display: flex; justify-content: space-around; position: relative; top:10px; pointer-events:none;"> 
+                <div style="width: 301px; height: 349px; background-image: url(../IMG/background.png); background-position: center; opacity: 0.02;"> </div>
+            </div> -->
+        </main>
+        <main id="signupPage">
+            <div id="signuparea">
+                <div id="signtitle">
+                    <div id="subtitle">
+                        <img src="../IMG/data.png"> 申請帳號
+                    </div>
+                </div>
+                <hr style="height:2px;border-width:0;color:#a1a1a1;background-color:#a1a1a1;">
+                <div style="display: block; justify-content: space-around;">
+                    <div class="signup-inputs">
+                        <img src="../IMG/account.png"> <span class="ps-0"> <input type="text" placeholder="帳號：" id="signup-account"> </span>
+                    </div>
+                    <div class="signup-inputs">
+                        <img src="../IMG/password.png"> <span class="ps-0"> <input type="password" placeholder="密碼：" id="signup-password"> </span>
+                    </div>
+                    <div class="signup-inputs">
+                        <img src="../IMG/password.png"> <span class="ps-0"> <input type="password" placeholder="確認密碼：" id="signup-password-again"> </span>
+                    </div>
+                    <div id="addacc">
+                        <img src="../IMG/signup.png" id="addaccbtn">
+                    </div>
+                </div>
+            </div>
+        </main>
+        <main id="orderPage" style="font-family: Consolas;">
+            <div class="order-container">
+                <div id="order-restname"> </div>    
+            </div>
+            <div class="order-container">
+                <table id="order-table"> </table>
+            </div>
+            <div class="order-container" style="margin: 15px 0px 0px 0px;">
+                <div style="width:fit-content; display:flex;" id="price-bar">
+                    <div id="order-totalp"> 0 </div>
+                    <button id="order-submit"> 訂購 </button>
+                </div>
+            </div>
+        </main>
+        <main id="checkorderPage" style="font-family: Consolas;">
+            <div class="checkorder-container">
+                <table id="checkorder-table"> </table>
+            </div>
+        </main>
+        <main id="admin-setfishPage" style="font-family: Consolas;">
+            <div class="admin-setfish-container">
+                <table id="admin-setfish-table"> </table>
+            </div>
+        </main>
+        <main id="admin-postrestPage">
+            <div class="admin-postrest-container">
+                <table id="admin-postrest-table"> </table>
+            </div>
+        </main>
+        <main id="admin-orderAndCallPage">
+            <div id="admin-oacCheckout">
+                <div class="centerfy">
+                    <table>
+                        <tr class="centerfy">
+                            <td id="admin-oac-restname" style="font-size:xx-large;"> </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="centerfy">
+                    <table id="admin-oac-noworder" style="color:#aaaaaa; display:initial;">
+                    </table>
+                </div>
+                <div class="centerfy">
+                    <table>
+                        <tr class="centerfy">
+                            <td id="admin-oac-price" style="color:aquamarine;">  </td>
+                        </tr>
+                        <tr class="centerfy">
+                            <td> <button id="admin-oac-CObtn"> 彙整資訊 </button> </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="admin-oacAggregate">
+                <div class="centerfy">
+                    <table>
+                        <tr class="centerfy">
+                            <td id="admin-oac-ag-restname" style="font-size:xx-large;"> </td>
+                        </tr>
+                        <tr class="centerfy" style="color:darkorange;">
+                            <td id="admin-oac-ag-phone"> </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="centerfy">
+                    <table id="admin-oac-ag-totalorder" style="color:#aaaaaa; display:initial;">     
+                    </table>
+                </div>
+                <div class="centerfy">
+                    <table>
+                        <tr class="centerfy">
+                            <td id="admin-oac-ag-price" style="color:aquamarine;">  </td>
+                        </tr>
+                        <tr class="centerfy">
+                            <td> <button id="admin-oac-AGbtn" style="display:initial;"> 確認結帳 </button> </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <script src="../JS/parameter.js"></script>      <!-- 全域參數 -->
+        <script src="../JS/display.js"></script>        <!-- 函式定義 -->
+        <script src="../client.js"></script>
+        <script src="../JS/moreoption.js"></script>     <!-- 顯示設定 -->
+        <script src="../JS/admin_postrest.js"></script>
+        <script src="../JS/pagetransition.js"></script> <!-- 每次按按鈕時畫面切換 -->
+        <script src="../JS/order.js"></script>          <!-- 記得要在這裡把菜單引入 --> <!-- server溝通 -->
+        <script src="../JS/checkorder.js"></script>     <!-- server溝通 -->
+        <script src="../JS/admin_setfish.js"></script>
+        <script src="../JS/admin_orderAndCall.js"></script>
+    </body>
+</html>

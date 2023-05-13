@@ -1,0 +1,39 @@
+#idlePage {
+    display: initial;
+}
+
+#signupPage {
+    display: none;
+}
+
+#orderPage {
+    display: none;
+}
+
+#checkorderPage {
+    display: none;
+}
+
+#admin-setfishPage {
+    display: none;
+}
+
+#admin-postrestPage {
+    display: none;
+}
+
+#admin-orderAndCallPage {
+    display: none;
+}
+
+#__login {
+    display: initial;
+}
+
+#__logout {
+    display: none;
+}
+
+.admin-only {
+    display: none;
+}
